@@ -1,0 +1,26 @@
+name: Commit lib/episodes.json
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Update lib/episodes.json
+        run: |
+          # ここでファイルの更新処理を実行（例としてテスト用の変更）
+          echo "{\"updated\": \"$(date)\"}" > lib/episodes.json
+      
+      - name: Commit changes using EndBug/add-and-commit
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: lib/episodes.json
+          message: "Update lib/episodes.json via GitHub Actions"
+          author_name: github-actions
+          author_email: github-actions@github.com
